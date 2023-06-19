@@ -28,8 +28,9 @@ public class ProductoDAO implements IProductoDAO {
     @Override
     public Producto read(int codigo) {
         for (int i = 0; i < listaProducto.obtenerTamano(); i++) {
-            if (listaProducto.obtener(i).getCodigo() == codigo) {
-                return listaProducto.obtener(i);
+            Producto producto = listaProducto.obtener(i);
+            if (producto.getCodigo() == codigo) {
+                return producto;
             }
         }
         return null;
@@ -38,8 +39,9 @@ public class ProductoDAO implements IProductoDAO {
     @Override
     public void delete(int codigo) {
         for (int i = 0; i < listaProducto.obtenerTamano(); i++) {
-            if (listaProducto.obtener(i).getCodigo() == codigo) {
-                listaProducto.eliminar(listaProducto.obtener(i));
+            Producto producto = listaProducto.obtener(i);
+            if (producto.getCodigo() == codigo) {
+                listaProducto.eliminar(producto);
                 break;
             }
         }
@@ -53,8 +55,9 @@ public class ProductoDAO implements IProductoDAO {
     @Override
     public boolean comprarProducto(String nombreProducto, int cantidad) {
         for  (int i = 0; i < listaProducto.obtenerTamano(); i++) {
-            if (listaProducto.obtener(i).getNombre().compareTo(nombreProducto) == 0 & listaProducto.obtener(i).getCantidadDisponible() - cantidad >= 0 ) {
-                listaProducto.obtener(i).setCantidadDisponible(listaProducto.obtener(i).getCantidadDisponible() - cantidad);
+            Producto producto = listaProducto.obtener(i);
+            if (producto.getNombre().compareTo(nombreProducto) == 0 & producto.getCantidadDisponible() - cantidad >= 0 ) {
+                listaProducto.obtener(i).setCantidadDisponible(producto.getCantidadDisponible() - cantidad);
                 return true;
             } 
         } return false;

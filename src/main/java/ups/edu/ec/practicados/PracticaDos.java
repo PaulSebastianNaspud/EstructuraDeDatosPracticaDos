@@ -26,9 +26,10 @@ public class PracticaDos {
         productoDAO.create(new Producto(4, 0, "Katabun", 20));
         productoDAO.create(vistaProucto.create());
         
-        ListaEnlazada<Producto> listaProducto = productoDAO.findAll();
+        
         boolean band = productoDAO.comprarProducto("Doritos", 4);
         vistaProucto.compraProducto(band);
+        ListaEnlazada<Producto> listaProducto = productoDAO.findAll();
         vistaProucto.listar(listaProducto);
         
         
