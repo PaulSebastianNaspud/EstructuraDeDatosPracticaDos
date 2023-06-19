@@ -12,16 +12,28 @@ import java.util.Scanner;
  */
 public class VistaMenu {
     Scanner entrada = new Scanner(System.in);
+    
     public int mostrarMenuPrincipal() {
         System.out.println("===== MENU PRINCIPAL =====");
-        System.out.println("1. Arreglo de números");
-        System.out.println("2. String sin espacios");
-        System.out.println("3. Arreglo de cadenas de texto");
+        System.out.println("1. Ingresar al menu del producto");
+        System.out.println("2. Realizar compras");
+        System.out.println("3. Ver registro de compras");
         System.out.println("0. Salir");
+        
         System.out.print("Ingrese una opción: ");
-        int opcion = entrada.nextInt();
-        entrada.nextLine();
-        return opcion;
+        return entrada.nextInt();
+    }
+    
+    public int mostrarMenuProducto(){
+        System.out.println("===== MENU PRODUCTO =====");
+        System.out.println("1. Ingresar un nuevo producto");
+        System.out.println("2. Eliminar un producto");
+        System.out.println("3. Mostrar un producto");
+        System.out.println("4. Listar todos los productos");
+        System.out.println("0. Salir");
+        
+        System.out.print("Ingrese una opción: ");
+        return entrada.nextInt();
     }
 
 }

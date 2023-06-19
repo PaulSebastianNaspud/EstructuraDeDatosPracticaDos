@@ -7,7 +7,7 @@ package ups.edu.ec.practicados;
 import ups.edu.ec.practicados.dao.ProductoDAO;
 import ups.edu.ec.practicados.modelo.Producto;
 import ups.edu.ec.practicados.util.ListaEnlazada;
-import ups.edu.ec.practicados.vista.VistaProucto;
+import ups.edu.ec.practicados.vista.VistaProducto;
 
 /**
  *
@@ -18,7 +18,7 @@ public class PracticaDos {
     public static void main(String[] args) {
         
         ProductoDAO productoDAO = new ProductoDAO();
-        VistaProucto vistaProucto = new VistaProucto();
+        VistaProducto vistaProucto = new VistaProducto();
         
         productoDAO.create(new Producto(1, 85, "Doritos", 20));
         productoDAO.create(new Producto(2, 0, "Rufles", 20));

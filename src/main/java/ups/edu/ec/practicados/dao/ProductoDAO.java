@@ -14,22 +14,22 @@ import ups.edu.ec.practicados.util.ListaEnlazada;
  */
 public class ProductoDAO implements IProductoDAO {
 
-    private ListaEnlazada<Producto> inventarioDeProducto;
+    private ListaEnlazada<Producto> listaProducto;
 
     public ProductoDAO() {
-        this.inventarioDeProducto = new ListaEnlazada();
+        this.listaProducto = new ListaEnlazada();
     }
 
     @Override
     public void create(Producto producto) {
-        inventarioDeProducto.agregar(producto);
+        listaProducto.agregar(producto);
     }
 
     @Override
     public Producto read(int codigo) {
-        for (int i = 0; i < inventarioDeProducto.obtenerTamano(); i++) {
-            if (inventarioDeProducto.obtener(i).getCodigo() == codigo) {
-                return inventarioDeProducto.obtener(i);
+        for (int i = 0; i < listaProducto.obtenerTamano(); i++) {
+            if (listaProducto.obtener(i).getCodigo() == codigo) {
+                return listaProducto.obtener(i);
             }
         }
         return null;
@@ -37,9 +37,9 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public void delete(int codigo) {
-        for (int i = 0; i < inventarioDeProducto.obtenerTamano(); i++) {
-            if (inventarioDeProducto.obtener(i).getCodigo() == codigo) {
-                inventarioDeProducto.eliminar(inventarioDeProducto.obtener(i));
+        for (int i = 0; i < listaProducto.obtenerTamano(); i++) {
+            if (listaProducto.obtener(i).getCodigo() == codigo) {
+                listaProducto.eliminar(listaProducto.obtener(i));
                 break;
             }
         }
@@ -47,14 +47,14 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public ListaEnlazada<Producto> findAll() {
-        return inventarioDeProducto;
+        return listaProducto;
     }
 
     @Override
     public boolean comprarProducto(String nombreProducto, int cantidad) {
-        for  (int i = 0; i < inventarioDeProducto.obtenerTamano(); i++) {
-            if (inventarioDeProducto.obtener(i).getNombre().compareTo(nombreProducto) == 0 & inventarioDeProducto.obtener(i).getCantidadDisponible() - cantidad >= 0 ) {
-                inventarioDeProducto.obtener(i).setCantidadDisponible(inventarioDeProducto.obtener(i).getCantidadDisponible() - cantidad);
+        for  (int i = 0; i < listaProducto.obtenerTamano(); i++) {
+            if (listaProducto.obtener(i).getNombre().compareTo(nombreProducto) == 0 & listaProducto.obtener(i).getCantidadDisponible() - cantidad >= 0 ) {
+                listaProducto.obtener(i).setCantidadDisponible(listaProducto.obtener(i).getCantidadDisponible() - cantidad);
                 return true;
             } 
         } return false;

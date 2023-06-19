@@ -12,10 +12,11 @@ import ups.edu.ec.practicados.util.ListaEnlazada;
  *
  * @author estem
  */
-public class VistaProucto {
+public class VistaProducto {
     Scanner entrada = new Scanner(System.in);
     
     public Producto create(){
+        
         System.out.println("Ingreasar el codigo del prodcucto: ");
         int codigo = entrada.nextInt();
         System.out.println("Ingrese la cantidad disponible: ");
