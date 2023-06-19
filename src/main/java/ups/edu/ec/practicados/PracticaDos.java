@@ -21,14 +21,14 @@ public class PracticaDos {
         VistaProucto vistaProucto = new VistaProucto();
         
         productoDAO.create(new Producto(1, 85, "Doritos", 20));
-        productoDAO.create(new Producto(2, 0, "Alo", 20));
-        productoDAO.create(new Producto(3, 0, "ProdutoTes", 20));
-        productoDAO.create(new Producto(4, 0, "ProductoTres", 20));
+        productoDAO.create(new Producto(2, 0, "Rufles", 20));
+        productoDAO.create(new Producto(3, 0, "Chitos", 20));
+        productoDAO.create(new Producto(4, 0, "Katabun", 20));
+        productoDAO.create(vistaProucto.create());
         
-        productoDAO.comprarProducto("Alo", 19);
         ListaEnlazada<Producto> listaProducto = productoDAO.findAll();
-        vistaProucto.productosDisponibles(listaProducto);
-        
+        boolean band = productoDAO.comprarProducto("Doritos", 4);
+        vistaProucto.compraProducto(band);
         vistaProucto.listar(listaProducto);
         
         

@@ -55,7 +55,8 @@ public class VistaProucto {
     }
     
     public String nombreDelProducto(){
-        System.out.println("Ingrese el nombre del procuto que desea comprar: ");
+        entrada.nextLine();
+        System.out.println("Ingrese el nombre del producto que desea comprar: ");
         return entrada.nextLine();
     }
     
@@ -67,5 +68,12 @@ public class VistaProucto {
         System.out.println("");
     }
     
+    public void compraProducto(boolean bandera){
+        if(bandera){
+            System.out.println("El produto se ha camprado con exito!");
+        }else{
+            System.out.println("No se ha podido realizar la accion revisar que los datos ingresados sea correctos");
+        }
+    }
     
 }
