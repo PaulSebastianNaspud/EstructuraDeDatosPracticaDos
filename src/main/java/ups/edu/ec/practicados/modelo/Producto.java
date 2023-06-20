@@ -15,6 +15,13 @@ public class Producto {
     public Producto() {
     }
 
+    public Producto(int codigo, double precio, String nombre) {
+        this.codigo = codigo;
+        this.precio = precio;
+        this.nombre = nombre;
+    }
+    
+
     public Producto(int codigo, double precio, String nombre, int cantidadDisponible) {
         this.codigo = codigo;
         this.precio = precio;
@@ -78,16 +85,8 @@ public class Producto {
 
     @Override
     public String toString() {
-        StringBuilder toString = new StringBuilder();
-        
-        toString.append("=========  Producto =========").append("\n");
-        toString.append("Cantidad Disponible: ").append(cantidadDisponible).append("\n");
-        toString.append("Código: ").append(codigo).append("\n");
-        toString.append("Precio: ").append(precio).append("\n");
-        toString.append("Nombre: ").append(nombre).append("\n");
-        toString.append("=============================");
-
-        return toString.toString();
+        return "Producto{" + "codigo=" + codigo + ", precio=" + precio + ", nombre=" + nombre + ", cantidadDisponible=" + cantidadDisponible + '}';
     }
+    
  
 }

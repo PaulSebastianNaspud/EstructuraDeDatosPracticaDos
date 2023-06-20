@@ -24,14 +24,14 @@ public class PracticaDos {
         productoDAO.create(new Producto(2, 0, "Rufles", 20));
         productoDAO.create(new Producto(3, 0, "Chitos", 20));
         productoDAO.create(new Producto(4, 0, "Katabun", 20));
-        productoDAO.create(vistaProucto.create());
         
         
-        boolean band = productoDAO.comprarProducto("Doritos", 4);
-        vistaProucto.compraProducto(band);
+        productoDAO.buyProduct("Doritos", 4);
+        
         ListaEnlazada<Producto> listaProducto = productoDAO.findAll();
         vistaProucto.listar(listaProducto);
-        
+        System.out.println("===============");
+        System.out.println(productoDAO.pilaTransaccion());
         
         
     }

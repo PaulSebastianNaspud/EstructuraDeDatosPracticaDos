@@ -5,7 +5,9 @@
 package ups.edu.ec.practicados.idao;
 
 import ups.edu.ec.practicados.modelo.Producto;
+import ups.edu.ec.practicados.modelo.TransaccionProducto;
 import ups.edu.ec.practicados.util.ListaEnlazada;
+import ups.edu.ec.practicados.util.Pila;
 
 /**
  *
@@ -17,7 +19,7 @@ public interface IProductoDAO {
     public Producto read(int codigo);
     public void delete(int codigo);
     public ListaEnlazada<Producto> findAll();
+    public void buyProduct(String nombreProducto, int cantidad);
     
-    public boolean comprarProducto(String nombreProducto, int cantidad);
-    
+    public Pila<TransaccionProducto> pilaTransaccion();    
 }

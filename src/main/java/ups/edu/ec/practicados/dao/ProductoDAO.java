@@ -6,29 +6,34 @@ package ups.edu.ec.practicados.dao;
 
 import ups.edu.ec.practicados.idao.IProductoDAO;
 import ups.edu.ec.practicados.modelo.Producto;
+import ups.edu.ec.practicados.modelo.TransaccionProducto;
 import ups.edu.ec.practicados.util.ListaEnlazada;
+import ups.edu.ec.practicados.util.Pila;
 
 /**
  *
  * @author estem
  */
 public class ProductoDAO implements IProductoDAO {
-
-    private ListaEnlazada<Producto> listaProducto;
+    //la clase "ProductoDAO" simula o remplaza a la clase inventario, transaccion
+    
+    private ListaEnlazada<Producto> listaInventario;
+    private Pila<TransaccionProducto> pilaTransccion;
 
     public ProductoDAO() {
-        this.listaProducto = new ListaEnlazada();
+        this.listaInventario = new ListaEnlazada();
+        this.pilaTransccion = new Pila<>();
     }
 
     @Override
     public void create(Producto producto) {
-        listaProducto.agregar(producto);
+        listaInventario.agregar(producto);
     }
 
     @Override
     public Producto read(int codigo) {
-        for (int i = 0; i < listaProducto.obtenerTamano(); i++) {
-            Producto producto = listaProducto.obtener(i);
+        for (int i = 0; i < listaInventario.obtenerTamano(); i++) {
+            Producto producto = listaInventario.obtener(i);
             if (producto.getCodigo() == codigo) {
                 return producto;
             }
@@ -38,10 +43,10 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public void delete(int codigo) {
-        for (int i = 0; i < listaProducto.obtenerTamano(); i++) {
-            Producto producto = listaProducto.obtener(i);
+        for (int i = 0; i < listaInventario.obtenerTamano(); i++) {
+            Producto producto = listaInventario.obtener(i);
             if (producto.getCodigo() == codigo) {
-                listaProducto.eliminar(producto);
+                listaInventario.eliminar(producto);
                 break;
             }
         }
@@ -49,18 +54,30 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public ListaEnlazada<Producto> findAll() {
-        return listaProducto;
+        return listaInventario;
+    }
+    
+    
+    @Override
+    public void buyProduct(String nombreProducto, int cantidad) {
+        for  (int i = 0; i < listaInventario.obtenerTamano(); i++) {
+            Producto producto = listaInventario.obtener(i);
+            if (producto.getNombre().compareTo(nombreProducto) == 0 & producto.getCantidadDisponible() - cantidad >= 0 ) {
+                listaInventario.obtener(i).setCantidadDisponible(producto.getCantidadDisponible() - cantidad);
+                this.nuevaTransaccion(new TransaccionProducto((cantidad * producto.getPrecio()), cantidad, producto.getCodigo(),producto.getPrecio(), producto.getNombre()));
+            } 
+        }
+    }
+    
+    private void nuevaTransaccion(TransaccionProducto producto) {
+        pilaTransccion.agregar(producto);
     }
 
     @Override
-    public boolean comprarProducto(String nombreProducto, int cantidad) {
-        for  (int i = 0; i < listaProducto.obtenerTamano(); i++) {
-            Producto producto = listaProducto.obtener(i);
-            if (producto.getNombre().compareTo(nombreProducto) == 0 & producto.getCantidadDisponible() - cantidad >= 0 ) {
-                listaProducto.obtener(i).setCantidadDisponible(producto.getCantidadDisponible() - cantidad);
-                return true;
-            } 
-        } return false;
+    public Pila<TransaccionProducto> pilaTransaccion() {
+        return pilaTransccion;
     }
+    
+    
 
 }

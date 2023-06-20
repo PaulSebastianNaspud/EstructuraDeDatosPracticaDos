@@ -17,6 +17,14 @@ public class ListaEnlazada<T> {
         this.cabeza = null;
         this.size = 0;
     }
+    
+    public Nodo<T> obtenerUltimo(){
+        Nodo<T> actual = cabeza;
+        while(actual != null){
+            actual = actual.getSiguiente();
+        }
+        return actual;
+    }
 
     public boolean estaVacia() {
         return cabeza == null;
