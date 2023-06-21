@@ -28,12 +28,16 @@ public class VistaMenu {
         System.out.println("===== MENU PRODUCTO =====");
         System.out.println("1. Ingresar un nuevo producto");
         System.out.println("2. Eliminar un producto");
-        System.out.println("3. Mostrar un producto");
+        System.out.println("3. Buscar un producto");
         System.out.println("4. Listar todos los productos");
-        System.out.println("0. Salir");
+        System.out.println("5. Salir");
         
         System.out.print("Ingrese una opción: ");
         return entrada.nextInt();
+    }
+    
+    public void mostrarMensaje(String mensaje){
+        System.out.println(mensaje);
     }
 
 }

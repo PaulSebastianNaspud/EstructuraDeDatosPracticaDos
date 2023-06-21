@@ -17,9 +17,9 @@ public interface IProductoDAO {
     
     public void create(Producto producto);
     public Producto read(int codigo);
-    public void delete(int codigo);
+    public boolean delete(int codigo);
     public ListaEnlazada<Producto> findAll();
-    public void buyProduct(String nombreProducto, int cantidad);
+    public boolean buyProduct(String nombreProducto, int cantidad);
     
     public Pila<TransaccionProducto> pilaTransaccion();    
 }

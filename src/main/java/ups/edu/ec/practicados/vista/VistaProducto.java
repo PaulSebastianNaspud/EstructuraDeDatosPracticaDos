@@ -36,28 +36,23 @@ public class VistaProducto {
         }
     }
     
-    public int eliminar(){
+    public String eliminar(){
         System.out.println("Ingresar el codigo del producto a eliminar: ");
-        return entrada.nextInt();
+        return entrada.nextLine();
     }
     
     public void verProducto(Producto producto){
         System.out.println(producto);
     }
     
-    public int leer(){
+    public String leer(){
         System.out.println("Ingrese el codigo del producto a buscar: ");
-        return entrada.nextInt();
+        return entrada.nextLine();
     }
     
-    public int cantidadDeProducto(){
-        System.out.println("Ingrese la cantidad de prodctos que desea comprar: ");
-        return entrada.nextInt();
-    }
-    
-    public String nombreDelProducto(){
+    public String comprarProducto(String mensaje){
         entrada.nextLine();
-        System.out.println("Ingrese el nombre del producto que desea comprar: ");
+        System.out.println(mensaje);
         return entrada.nextLine();
     }
     
@@ -69,11 +64,11 @@ public class VistaProducto {
         System.out.println("");
     }
     
-    public void compraProducto(boolean bandera){
+    public void validarOperaciones(boolean bandera,String mensajeUno, String mensajeDos){
         if(bandera){
-            System.out.println("El produto se ha camprado con exito!");
+            System.out.println(mensajeUno);
         }else{
-            System.out.println("No se ha podido realizar la accion revisar que los datos ingresados sea correctos");
+            System.out.println(mensajeDos);
         }
     }
     

@@ -14,13 +14,16 @@ import ups.edu.ec.practicados.modelo.Producto;
 public class Pila<T> {
 
     private Stack<T> pilaGenerico;
+    private int size;
 
     public Pila() {
         pilaGenerico = new Stack<>();
+        this.size = 0 ;
     }
 
     public void agregar(T generico) {
         pilaGenerico.push(generico);
+        size++;
     }
 
     public T procesar() {
@@ -38,9 +41,13 @@ public class Pila<T> {
         return pilaGenerico.isEmpty();
     }
 
+    public int getSize() {
+        return size;
+    }
+
     @Override
     public String toString() {
-        return "{" + pilaGenerico + '}';
+        return pilaGenerico.toString();
     }
 
 }

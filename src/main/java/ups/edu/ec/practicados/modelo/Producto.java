@@ -15,9 +15,8 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int codigo, double precio, String nombre) {
+    public Producto(int codigo, String nombre) {
         this.codigo = codigo;
-        this.precio = precio;
         this.nombre = nombre;
     }
     
@@ -82,10 +81,17 @@ public class Producto {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-
+    
     @Override
     public String toString() {
-        return "Producto{" + "codigo=" + codigo + ", precio=" + precio + ", nombre=" + nombre + ", cantidadDisponible=" + cantidadDisponible + '}';
+        StringBuilder toString = new StringBuilder();
+        toString.append("====== PRODUCTO ======").append("\n");
+        toString.append("Codigo: ").append(this.codigo +"\n");
+        toString.append("Nombre: ").append(this.nombre + "\n" );
+        toString.append("Precio: ").append(this.precio + "\n");
+        toString.append("Cantidad disponible: ").append(cantidadDisponible +"\n");
+        toString.append("======================");
+        return toString.toString();
     }
     
  

@@ -16,7 +16,7 @@ import ups.edu.ec.practicados.util.Pila;
  */
 public class ProductoDAO implements IProductoDAO {
     //la clase "ProductoDAO" simula o remplaza a la clase inventario, transaccion
-    
+
     private ListaEnlazada<Producto> listaInventario;
     private Pila<TransaccionProducto> pilaTransccion;
 
@@ -42,33 +42,33 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public void delete(int codigo) {
+    public boolean delete(int codigo) {
         for (int i = 0; i < listaInventario.obtenerTamano(); i++) {
             Producto producto = listaInventario.obtener(i);
             if (producto.getCodigo() == codigo) {
                 listaInventario.eliminar(producto);
-                break;
+                return true;
             }
-        }
+        }return false;
     }
 
     @Override
     public ListaEnlazada<Producto> findAll() {
         return listaInventario;
     }
-    
-    
+
     @Override
-    public void buyProduct(String nombreProducto, int cantidad) {
-        for  (int i = 0; i < listaInventario.obtenerTamano(); i++) {
+    public boolean buyProduct(String nombreProducto, int cantidad) {
+        for (int i = 0; i < listaInventario.obtenerTamano(); i++) {
             Producto producto = listaInventario.obtener(i);
-            if (producto.getNombre().compareTo(nombreProducto) == 0 & producto.getCantidadDisponible() - cantidad >= 0 ) {
+            if (producto.getNombre().compareTo(nombreProducto) == 0 & producto.getCantidadDisponible() - cantidad >= 0) {
                 listaInventario.obtener(i).setCantidadDisponible(producto.getCantidadDisponible() - cantidad);
-                this.nuevaTransaccion(new TransaccionProducto((cantidad * producto.getPrecio()), cantidad, producto.getCodigo(),producto.getPrecio(), producto.getNombre()));
-            } 
-        }
+                this.nuevaTransaccion(new TransaccionProducto((cantidad * producto.getPrecio()), cantidad, producto.getCodigo(), producto.getNombre()));
+                return true;
+            }
+        }return false;
     }
-    
+
     private void nuevaTransaccion(TransaccionProducto producto) {
         pilaTransccion.agregar(producto);
     }
@@ -77,7 +77,5 @@ public class ProductoDAO implements IProductoDAO {
     public Pila<TransaccionProducto> pilaTransaccion() {
         return pilaTransccion;
     }
-    
-    
 
 }
