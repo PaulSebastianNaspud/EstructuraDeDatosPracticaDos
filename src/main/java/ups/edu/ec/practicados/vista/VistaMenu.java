@@ -16,7 +16,7 @@ public class VistaMenu {
     public int mostrarMenuPrincipal() {
         System.out.println("===== MENU PRINCIPAL =====");
         System.out.println("1. Ingresar al menu del producto");
-        System.out.println("2. Realizar compras");
+        System.out.println("2. Realizar una compra");
         System.out.println("3. Ver registro de compras");
         System.out.println("0. Salir");
         
@@ -38,6 +38,14 @@ public class VistaMenu {
     
     public void mostrarMensaje(String mensaje){
         System.out.println(mensaje);
+    }
+    
+    public void validarOperaciones(boolean bandera,String mensajeUno, String mensajeDos){
+        if(bandera){
+            System.out.println(mensajeUno);
+        }else{
+            System.out.println(mensajeDos);
+        }
     }
 
 }

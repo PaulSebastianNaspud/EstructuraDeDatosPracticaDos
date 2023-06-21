@@ -40,10 +40,11 @@ public class ControladorProducto {
         do {
             opcion = vistaMenu.mostrarMenuPrincipal();
             switch (opcion) {
-                case 1 -> this.menuProducto();
+                case 0-> this.vistaMenu.mostrarMensaje("Salio del programa");
+                case 1-> this.menuProducto();
                 case 2-> this.comprarProducto();
                 case 3-> this.pila();
-                default -> vistaMenu.mostrarMensaje("Opcion invalida!");
+                default -> this.vistaMenu.mostrarMensaje("Opcion invalida!");
             }
         } while (opcion != 0);
     }
@@ -53,10 +54,12 @@ public class ControladorProducto {
         do {
             opcionMenuProducto = vistaMenu.mostrarMenuProducto();
             switch (opcionMenuProducto) {
+                case 0-> this.vistaMenu.mostrarMensaje("Regreso al menu principal");
                 case 1 -> this.crearProducto();
                 case 2 -> this.eliminar();
                 case 3 -> this.buscar();
                 case 4 -> this.listar();
+                default -> this.vistaMenu.mostrarMensaje("Opcion invalida!");
             }
         } while (opcionMenuProducto != 0);
     }
@@ -69,21 +72,22 @@ public class ControladorProducto {
     private void eliminar() {
         int codigo = vistaProducto.eliminar();
         boolean bandera = productoDAO.delete(codigo);
-        vistaProducto.validarOperaciones(bandera, "Persona elminada!", "Persons no encontrada!");
+        vistaMenu.validarOperaciones(bandera, "Persona elminada!", "Persons no encontrada!");
     }
 
     private void comprarProducto() {
-        String cantidadAux = vistaProducto.comprarProducto("Ingresar la cantidad de prodctos que desea comprar: ");
+        String cantidadAux = vistaProducto.comprarProducto("Ingresar la cantidad de productos que desea comprar: ");
         int cantidad = Integer.parseInt(cantidadAux);
         String nombre = vistaProducto.comprarProducto("Ingresar el nombre del producto a comprar: ");
         boolean bandera = productoDAO.buyProduct(nombre, cantidad);
-        vistaProducto.validarOperaciones(bandera, "Compra exitosa!", "Datos ingresados incorrectos");
+        vistaMenu.validarOperaciones(bandera, "Compra exitosa!", "Compra no realizada");
     }
 
     private void buscar() {
         int codigo = vistaProducto.leer();
         producto = productoDAO.read(codigo);
         vistaProducto.verProducto(producto);
+        vistaMenu.validarOperaciones(producto!= null, "Persona encontrada!", "Persona no econtrada!");
     }
 
     private void listar() {

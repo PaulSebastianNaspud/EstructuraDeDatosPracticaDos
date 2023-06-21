@@ -46,7 +46,7 @@ public class VistaProducto {
     }
     
     public int leer(){
-        System.out.println("Ingrese el codigo del producto a buscar: ");
+        System.out.println("Ingresar el codigo del producto a buscar: ");
         return entrada.nextInt();
     }
     
@@ -62,14 +62,6 @@ public class VistaProducto {
             System.out.print(listaAuxProducto.obtener(i).getNombre() + "\t");
         }
         System.out.println("");
-    }
-    
-    public void validarOperaciones(boolean bandera,String mensajeUno, String mensajeDos){
-        if(bandera){
-            System.out.println(mensajeUno);
-        }else{
-            System.out.println(mensajeDos);
-        }
     }
     
 }
