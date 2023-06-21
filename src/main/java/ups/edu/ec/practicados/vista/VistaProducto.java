@@ -36,22 +36,21 @@ public class VistaProducto {
         }
     }
     
-    public String eliminar(){
+    public int eliminar(){
         System.out.println("Ingresar el codigo del producto a eliminar: ");
-        return entrada.nextLine();
+        return entrada.nextInt();
     }
     
     public void verProducto(Producto producto){
         System.out.println(producto);
     }
     
-    public String leer(){
+    public int leer(){
         System.out.println("Ingrese el codigo del producto a buscar: ");
-        return entrada.nextLine();
+        return entrada.nextInt();
     }
     
     public String comprarProducto(String mensaje){
-        entrada.nextLine();
         System.out.println(mensaje);
         return entrada.nextLine();
     }

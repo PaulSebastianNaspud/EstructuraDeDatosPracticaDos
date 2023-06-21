@@ -28,6 +28,6 @@ public class PracticaDos {
         
         ControladorProducto controladorProducto = new ControladorProducto(vistaProducto, vistaMenu, vistaTransaccionProducto, productoDAO);
         
-        controladorProducto.iniiciar();
+        controladorProducto.iniciar();
     }
 }

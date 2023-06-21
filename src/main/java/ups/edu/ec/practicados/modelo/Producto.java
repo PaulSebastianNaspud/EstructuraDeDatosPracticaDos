@@ -93,6 +93,4 @@ public class Producto {
         toString.append("======================");
         return toString.toString();
     }
-    
- 
 }

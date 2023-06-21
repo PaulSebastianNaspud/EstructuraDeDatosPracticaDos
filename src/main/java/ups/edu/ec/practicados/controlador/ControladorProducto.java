@@ -8,6 +8,7 @@ import ups.edu.ec.practicados.idao.IProductoDAO;
 import ups.edu.ec.practicados.modelo.Producto;
 import ups.edu.ec.practicados.modelo.TransaccionProducto;
 import ups.edu.ec.practicados.util.ListaEnlazada;
+import ups.edu.ec.practicados.util.Pila;
 import ups.edu.ec.practicados.vista.VistaMenu;
 import ups.edu.ec.practicados.vista.VistaProducto;
 import ups.edu.ec.practicados.vista.VistaTransaccionProducto;
@@ -34,32 +35,30 @@ public class ControladorProducto {
         this.productoDAO = productoDAO;
     }
 
-    public void iniiciar() {
+    public void iniciar() {
         int opcion = -1;
         do {
             opcion = vistaMenu.mostrarMenuPrincipal();
             switch (opcion) {
-                case 1:
-                    do {
-                        opcion = vistaMenu.mostrarMenuProducto();
-                        switch (opcion) {
-                            case 1 -> this.crearProducto();
-                            case 2 -> this.eliminar();
-                            case 3 -> this.buscar();
-                            case 4 -> this.listar();
-                        }
-                    }while (opcion!= 5);
-                    break;
-                case 2:
-                    this.comprarProducto();
-                    break;
-                case 3: 
-                    this.pila();
-                default:
-                    vistaMenu.mostrarMensaje("Opcion invalida!");
+                case 1 -> this.menuProducto();
+                case 2-> this.comprarProducto();
+                case 3-> this.pila();
+                default -> vistaMenu.mostrarMensaje("Opcion invalida!");
             }
-        }while (opcion!=0);
+        } while (opcion != 0);
+    }
 
+    private void menuProducto() {
+        int opcionMenuProducto = -1;
+        do {
+            opcionMenuProducto = vistaMenu.mostrarMenuProducto();
+            switch (opcionMenuProducto) {
+                case 1 -> this.crearProducto();
+                case 2 -> this.eliminar();
+                case 3 -> this.buscar();
+                case 4 -> this.listar();
+            }
+        } while (opcionMenuProducto != 0);
     }
 
     private void crearProducto() {
@@ -68,21 +67,22 @@ public class ControladorProducto {
     }
 
     private void eliminar() {
-        String codigo = vistaProducto.eliminar();
-        boolean bandera = productoDAO.delete(Integer.parseInt(codigo));
+        int codigo = vistaProducto.eliminar();
+        boolean bandera = productoDAO.delete(codigo);
         vistaProducto.validarOperaciones(bandera, "Persona elminada!", "Persons no encontrada!");
     }
 
     private void comprarProducto() {
-        String cantidad = vistaProducto.comprarProducto("Ingresar la cantidad de prodctos que desea comprar: ");
+        String cantidadAux = vistaProducto.comprarProducto("Ingresar la cantidad de prodctos que desea comprar: ");
+        int cantidad = Integer.parseInt(cantidadAux);
         String nombre = vistaProducto.comprarProducto("Ingresar el nombre del producto a comprar: ");
-        boolean bandera = productoDAO.buyProduct(nombre, Integer.parseInt(cantidad));
+        boolean bandera = productoDAO.buyProduct(nombre, cantidad);
         vistaProducto.validarOperaciones(bandera, "Compra exitosa!", "Datos ingresados incorrectos");
     }
 
     private void buscar() {
-        String nombre = vistaProducto.leer();
-        producto = productoDAO.read(Integer.parseInt(nombre));
+        int codigo = vistaProducto.leer();
+        producto = productoDAO.read(codigo);
         vistaProducto.verProducto(producto);
     }
 
@@ -91,6 +91,7 @@ public class ControladorProducto {
     }
 
     private void pila() {
-        vistaTransaccionProducto.imprimirPila(productoDAO.pilaTransaccion());
+        Pila<TransaccionProducto> pilaAux = productoDAO.pilaTransaccion();
+        vistaTransaccionProducto.imprimirPila(pilaAux);
     }
 }
