@@ -22,7 +22,7 @@ public class PracticaDos {
         
         VistaProducto vistaProducto = new VistaProducto();
         VistaMenu vistaMenu = new VistaMenu();
-        VistaTransaccionProducto vistaTransaccionProducto = null;
+        VistaTransaccionProducto vistaTransaccionProducto = new VistaTransaccionProducto();
 
         IProductoDAO productoDAO = new ProductoDAO();
         

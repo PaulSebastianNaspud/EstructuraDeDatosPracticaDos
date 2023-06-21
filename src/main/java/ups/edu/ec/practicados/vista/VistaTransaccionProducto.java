@@ -15,10 +15,10 @@ public class VistaTransaccionProducto {
 
     public void imprimirPila(Pila<TransaccionProducto> pilaTransaccionProducto) {
         while (!pilaTransaccionProducto.estaVacia()) {
-            System.out.println(pilaTransaccionProducto.procesar());
+            TransaccionProducto transaccionProductoProcesado = pilaTransaccionProducto.procesar();
 
+            System.out.println("Prosesando la transaccion de la pila \n\t Sale -->" + transaccionProductoProcesado);
         }
-
     }
 
 }

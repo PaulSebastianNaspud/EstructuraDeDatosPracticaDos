@@ -51,6 +51,7 @@ public class VistaProducto {
     }
     
     public String comprarProducto(String mensaje){
+        entrada.nextLine();
         System.out.println(mensaje);
         return entrada.nextLine();
     }
